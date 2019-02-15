@@ -1,26 +1,29 @@
-<div class="container">
+<div class="container" *ngIf="entry$ | async; let entry; else error;">
   <h1>Adicione uma nova entrada</h1>
 
-
-  <form (ngSubmit)="onSubmit()" *ngIf="!loading">
+  <form (ngSubmit)="onSubmit()">
     
     <!-- value -->
-    <div id="entry-value-group" class="form-group">
+    <div *ngIf="entry == 'Value'" id="entry-value-group">
       <label for="entry-value">Quanto você gastou?</label>
       <input type="text" class="form-control" id="entry-value" 
         required
         [(ngModel)]="model.value" name="value">
+
+      <button type="button" class="btn btn-secundary" (click)="goToDescription()">Next</button>
     </div>
 
     <!-- description -->
-    <div id="description-group" class="form-group">
+    <div *ngIf="entry == 'Description'" id="description-group" class="form-group">
       <label for="description">Adicione uma descrição</label>
       <input type="text" class="form-control" id="description"
         [(ngModel)]="model.description" name="description">
+
+      <button type="button" class="btn btn-secundary" (click)="goToDateTime()">Next</button>
     </div>
 
     <!-- date -->
-    <div class="row">
+    <div *ngIf="entry == 'DateTime'" class="row">
         <div class='col-sm-6'>
           <div class="form-group">
               <label for="description">Data:</label>
@@ -45,22 +48,25 @@
     </div>
     <br>
 
-    
-
-    <button type="submit" class="btn btn-success">Pronto!</button>
+    <button *ngIf="entry == 'DateTime'" type="submit" class="btn btn-success">Pronto!</button>
   </form>
 
-  <div *ngIf="loading && (!success && !error)">
+  <div *ngIf="entry == 'Submiting'">
     Enviando...
   </div>
 
-  <div *ngIf="success || error">
-    <div *ngIf="success; else errorBlock">
-      Entrada salva com sucesso!
-    </div>
-    <ng-template #errorBlock>
-      Ops, algo deu errado :(
-    </ng-template>
+  <div *ngIf="entry == 'Success'">
+    Entrada salva com sucesso!
+
+    <button type="button" (click)="reload()">Adicionar outra entrada</button>
+  </div>
+
+  <div *ngIf="entry == 'Error'">
+    Ops, algo deu errado :(
+
+    <button type="button" (click)="reload()">Adicionar outra entrada</button>
   </div>
   
 </div>
+
+<ng-template #error>Error...</ng-template>

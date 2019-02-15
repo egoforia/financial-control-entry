@@ -16,8 +16,11 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 import { HomeModule } from './home/home.module';
 import { EntryFormComponent } from './entry-form/entry-form.component';
-
-
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { entryReducer } from './reducers/entry.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { EntryFormComponent } from './entry-form/entry-form.component';
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    StoreModule.forRoot({ entry: entryReducer }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
