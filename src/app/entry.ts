@@ -6,8 +6,8 @@ export class Entry {
         public id?: number,
         public value?: number,
         public description?: string,
-        public date?: Date,
-        public time?: Time
+        public date?: any,
+        public time?: any
     ){}
     
 }

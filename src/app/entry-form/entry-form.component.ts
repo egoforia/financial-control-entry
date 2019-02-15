@@ -10,15 +10,22 @@ import { CodaAPIService } from '../coda-api.service';
   styleUrls: ['./entry-form.component.scss']
 })
 export class EntryFormComponent implements OnInit {
-
+  
   model = new Entry();
+
   loading = false;
   success = false;
   error = false;
   codaAPI: CodaAPIService;
 
+  
+
   constructor(codaAPI: CodaAPIService) {
     this.codaAPI = codaAPI;
+    const now = new Date();
+
+    this.model.date = { year: now.getFullYear(), month: now.getMonth(), day: now.getDate() };
+    this.model.time = { hour: now.getHours(), minute: now.getMinutes() };
   }
 
   ngOnInit() {

@@ -19,6 +19,34 @@
         [(ngModel)]="model.description" name="description">
     </div>
 
+    <!-- date -->
+    <div class="row">
+        <div class='col-sm-6'>
+          <div class="form-group">
+              <label for="description">Data:</label>
+              <div class="input-group date my-6" [ngClass]="{'input-group-focus':focus===true}">
+                  <input class="form-control" placeholder="yyyy-mm-dd"
+                    name="date" [(ngModel)]="model.date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (focus)="focus=true" (blur)="focus=false" />
+                  <div class="input-group-append">
+                    <span class="glyphicon glyphicon-calendar input-group-text">
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </span>
+                  </div>
+              </div>
+          </div>
+        </div>    
+
+        <!-- time -->
+        <div class='col-sm-6' style="margin-top: -.6rem;">
+          <div class="form-group">
+            <ngb-timepicker id="time" name="time" [(ngModel)]="model.time" [meridian]="meridian"></ngb-timepicker>
+          </div>
+        </div>
+    </div>
+    <br>
+
+    
+
     <button type="submit" class="btn btn-success">Pronto!</button>
   </form>
 

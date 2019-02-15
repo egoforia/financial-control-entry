@@ -35,8 +35,8 @@ export class CodaAPIService {
           "cells": [
             { "column": "Value",        "value": entry.value },
             { "column": "Description",  "value": entry.description },
-            { "column": "Date",         "value": entry.date },
-            { "column": "Time",         "value": entry.time },
+            { "column": "Date",         "value": `${entry.date.month}/${entry.date.day}/${entry.date.year}` },
+            { "column": "Time",         "value": `${entry.time.hour}:${entry.time.minute}` },
           ]
         }
       ]
