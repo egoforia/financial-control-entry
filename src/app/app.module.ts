@@ -21,6 +21,7 @@ import { reducers, metaReducers } from './reducers';
 import { entryReducer } from './reducers/entry.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AutofocusDirective } from './autofocus.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { environment } from '../environments/environment';
     ProfileComponent,
     NavbarComponent,
     FooterComponent,
-    EntryFormComponent
+    EntryFormComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,

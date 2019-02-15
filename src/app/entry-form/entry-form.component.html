@@ -6,9 +6,11 @@
     <!-- value -->
     <div *ngIf="entry == 'Value'" id="entry-value-group">
       <label for="entry-value">Quanto você gastou?</label>
-      <input type="text" class="form-control" id="entry-value" 
+      <input #value name="value" type="text" class="form-control"
+        placeholder="R$ 0,00"
         required
-        [(ngModel)]="model.value" name="value">
+        autofocus
+        [(ngModel)]="model.value">
 
       <button type="button" class="btn btn-secundary" (click)="goToDescription()">Next</button>
     </div>
@@ -16,8 +18,8 @@
     <!-- description -->
     <div *ngIf="entry == 'Description'" id="description-group" class="form-group">
       <label for="description">Adicione uma descrição</label>
-      <input type="text" class="form-control" id="description"
-        [(ngModel)]="model.description" name="description">
+      <input #description type="text" class="form-control" id="description"
+        [(ngModel)]="model.description" name="description" autofocus>
 
       <button type="button" class="btn btn-secundary" (click)="goToDateTime()">Next</button>
     </div>
@@ -28,7 +30,7 @@
           <div class="form-group">
               <label for="description">Data:</label>
               <div class="input-group date my-6" [ngClass]="{'input-group-focus':focus===true}">
-                  <input class="form-control" placeholder="yyyy-mm-dd"
+                  <input #date class="form-control" placeholder="yyyy-mm-dd"
                     name="date" [(ngModel)]="model.date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (focus)="focus=true" (blur)="focus=false" />
                   <div class="input-group-append">
                     <span class="glyphicon glyphicon-calendar input-group-text">
@@ -42,7 +44,7 @@
         <!-- time -->
         <div class='col-sm-6' style="margin-top: -.6rem;">
           <div class="form-group">
-            <ngb-timepicker id="time" name="time" [(ngModel)]="model.time" [meridian]="meridian"></ngb-timepicker>
+            <ngb-timepicker #time id="time" name="time" [(ngModel)]="model.time" [meridian]="meridian"></ngb-timepicker>
           </div>
         </div>
     </div>
@@ -57,14 +59,14 @@
 
   <div *ngIf="entry == 'Success'">
     Entrada salva com sucesso!
-
-    <button type="button" (click)="reload()">Adicionar outra entrada</button>
+    <br>
+    <button type="button" (click)="reload()" class="btn btn-primary btn-dark">Adicionar outra entrada</button>
   </div>
 
   <div *ngIf="entry == 'Error'">
     Ops, algo deu errado :(
-
-    <button type="button" (click)="reload()">Adicionar outra entrada</button>
+    <br>
+    <button type="button" (click)="reload()" class="btn btn-primary btn-dark">Adicionar outra entrada</button>
   </div>
   
 </div>

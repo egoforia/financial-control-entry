@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -28,6 +28,7 @@ export class EntryFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   goToDescription() {
