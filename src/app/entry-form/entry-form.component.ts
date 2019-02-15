@@ -27,9 +27,7 @@ export class EntryFormComponent implements OnInit {
     this.model.time = { hour: now.getHours(), minute: now.getMinutes() };
   }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() { }
 
   goToDescription() {
     this.store.dispatch(new Description());
